@@ -5,6 +5,10 @@
 
 ![Alt text](resume-architecture-1.jpg)
 
+## The website 
+
+![Alt text](website-view-1.png)
+
 
 # STEPS BY STEPS PROCESS 
 
@@ -38,7 +42,7 @@ While S3 provides reliable storage, we enhance the performance and global reach 
 ![Alt text](image-3.png)
 
 
-### * Click on the “Create Distribution” button and wait for approximately 5 minutes for CloudFront to complete the creation process. 
+### * Click on the “Create Distribution” button and wait for approximately 5-10 minutes for CloudFront to complete the creation process. 
 
 
 
