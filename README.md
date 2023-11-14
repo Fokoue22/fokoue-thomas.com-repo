@@ -7,7 +7,7 @@
 
 ## The website 
 
-![Alt text](website-view-1.png)
+![Alt text](website-overview.png)
 
 
 # STEPS BY STEPS PROCESS 
