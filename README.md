@@ -23,6 +23,17 @@ To begin, we utilize `Amazon S3 (Simple Storage Service)` as a storage solution 
 ![Alt text](image.png)
 
 
+## `Step 2:` Configuring DNS with Route53
+
+`Amazon Route53` is a highly available and scalable Domain Name System (DNS) web service that connects user requests to your website hosted in AWS. By creating a DNS hosted zone and configuring A records, you can map your custom domain name to your CloudFront distribution.
+
+### * Create a hosted zone in Route53 for your domain (e.g., fokoue-thomas.com).
+### * Add an A record that points to your CloudFront distribution domain name (you will get this URL once CloudFront is created).
+### * Update your domain registrar's nameservers to point to the Route53 nameservers provided by AWS.
+
+This step enables users to access your website using your custom domain name instead of the CloudFront distribution URL.
+
+
 ## `Step 3:` Setting Up CloudFront 
 
 While S3 provides reliable storage, we enhance the performance and global reach of our website by leveraging `CloudFront AWS’s Content Delivery Network (CDN)`. CloudFront caches and distributes your website’s content across a network of `Edge locations worldwide`, reducing latency and improving the user experience.
@@ -42,9 +53,80 @@ While S3 provides reliable storage, we enhance the performance and global reach 
 ![Alt text](image-3.png)
 
 
-### * Click on the “Create Distribution” button and wait for approximately 5-10 minutes for CloudFront to complete the creation process. 
+### * Click on the "Create Distribution" button and wait for approximately 5-10 minutes for CloudFront to complete the creation process.
+
+### * Once CloudFront distribution is created, copy the S3 bucket policy from the CloudFront settings and apply it to your S3 bucket. This ensures that only CloudFront can access your S3 bucket, improving security by blocking direct public access.
 
 
+## `Step 4:` Securing Your Website with AWS Certificate Manager
+
+`AWS Certificate Manager (ACM)` provides free SSL/TLS certificates to secure your website with HTTPS encryption. This protects data transmitted between users and your website, building trust and improving SEO rankings.
+
+### * Request a new public certificate in AWS Certificate Manager for your domain (e.g., fokoue-thomas.com).
+### * Validate domain ownership by adding DNS records as requested by ACM.
+### * Once validated, associate the certificate with your CloudFront distribution by updating the distribution settings to use HTTPS.
+
+The certificate is automatically renewed by AWS, so you don't need to manage certificate expiration manually.
+
+
+## `Step 5:` Automating Deployments with CodePipeline
+
+`AWS CodePipeline` is a fully managed continuous delivery service that automates the release process. It orchestrates the workflow of uploading your website files from your GitHub repository to S3 whenever you push code changes.
+
+### * Create a new CodePipeline in AWS and configure the source stage to connect to your GitHub repository.
+### * Link the pipeline to the branch where your website code lives (typically `main` or `develop`).
+### * Configure the deployment stage to upload files to your S3 bucket.
+### * Set up GitHub Actions in your repository to trigger CodePipeline automatically on every push.
+
+This automation eliminates manual file uploads and ensures your website is always up-to-date with your latest GitHub commits.
+
+
+## `Step 6:` Continuous Integration with GitHub
+
+`GitHub` serves as your version control system and the source of truth for your website code. By integrating GitHub with CodePipeline, you create a fully automated CI/CD workflow.
+
+### * Push your website code (HTML, CSS, JavaScript) to your GitHub repository.
+### * GitHub Actions automatically triggers CodePipeline on every push to your main branch.
+### * CodePipeline runs, validates, and deploys your updated files to S3.
+### * CloudFront automatically caches and serves the updated content globally.
+
+This entire process happens seamlessly, allowing you to focus on development while AWS handles the infrastructure and deployment.
+
+
+## Architecture Flow Summary
+
+```
+User Request
+    ↓
+Route53 (DNS Resolution)
+    ↓
+CloudFront (CDN + Caching)
+    ↓
+S3 (Static Website Files)
+    
+[Backend Flow]
+GitHub (Code Repository)
+    ↓
+GitHub Actions (Triggers Pipeline)
+    ↓
+CodePipeline (Automation)
+    ↓
+S3 (Deployment)
+    ↓
+CloudFront (Cache Invalidation)
+```
+
+
+## `Step 7:` Final Verification
+
+After completing all the previous steps, verify that your website is functioning correctly:
+
+### * Visit your custom domain (fokoue-thomas.com) in your browser.
+### * Confirm that the URL shows HTTPS with a valid certificate (green lock icon).
+### * Test that all pages, links, and media load correctly.
+### * Verify that the website is cached and served globally from CloudFront edge locations.
+
+Congratulations! Your website is now deployed on a scalable, secure, and globally distributed AWS infrastructure! 🎉
 
 
 
