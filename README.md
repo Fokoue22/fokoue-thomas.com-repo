@@ -136,7 +136,7 @@ After completing all the previous steps, verify that your website is functioning
 ### * Test that all pages, links, and media load correctly.
 ### * Verify that the website is cached and served globally from CloudFront edge locations.
 
-Congratulations! Your website is now deployed on a scalable, secure, and globally distributed AWS infrastructure! 🎉
+Congratulations! Your website is now deployed on a scalable, secure, and globally distributed AWS infrastructure! 
 
 
 # fokoue-thomas.com 
