@@ -166,7 +166,7 @@ section {
   display: flex;
   justify-content: center;
   gap: 5rem;
-  height: 80vh;
+  height: 70vh;
 }
 
 .section__pic-container {
@@ -378,6 +378,22 @@ article .icon {
 .project-btn {
   color: black;
   border-color: rgb(163, 163, 163);
+}
+
+#projects .color-container {
+  padding: 1rem;
+  min-width: 250px;
+  max-width: 350px;
+}
+
+#projects .experience-sub-title {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+#projects .about-containers {
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 /* CONTACT */
