@@ -2,12 +2,12 @@
 
 ## This repository contain my personal website launged using Github, S3 bucket, codePipline, Route53, cloudFrond and AWS Certificate Manager. 
 
-
-![Alt text](resume-architecture-1.jpg)
+## Architecture
+![Alt text](explanation-images/resume-architecture-1.jpg)
 
 ## The website 
 
-![Alt text](website-overview-1.png)
+![Alt text](explanation-images/website-overview-1.png)
 
 
 # STEPS BY STEPS PROCESS 
@@ -20,7 +20,7 @@ To begin, we utilize `Amazon S3 (Simple Storage Service)` as a storage solution 
 ### * Ensure that ACLs remain disabled, and be certain to enable the "Block all public access" setting to prevent any unauthorized public access to the contents stored in the bucket.
 
 
-![Alt text](image.png)
+![Alt text](explanation-images/image.png)
 
 
 ## `Step 2:` Setting Up CloudFront 
@@ -29,17 +29,16 @@ While S3 provides reliable storage, we enhance the performance and global reach 
 
 ### * When creating the distribution, make sure to select the S3 bucket as the `Origin Domain`, and select `Origin access control settings` under Origin Access. `OAC (Origin Access Control) in CloudFront` is a feature that allows you to restrict access to your origin server, ensuring that only specified CloudFront distributions can access it. AFTER the creation of the distribution, you will see an option to copy the S3 bucket policy that allows only CloudFront to communicate with the S3 bucket, for now do not worry about this step.
 
-![Alt text](image-1.png)
+![Alt text](explanation-images/image-1.png)
 
 
 ### * Change the viewer protocol to Redirect HTTP to HTTPS to ensure the secure transfer of data.
 
-![Alt text](image-2.png)
+![Alt text](explanation-images/image-2.png)
 
 ### * Also, modify the root object to "index.html," which will be the default file served when accessing the website.
 
-
-![Alt text](image-3.png)
+![Alt text](explanation-images/image-3.png)
 
 
 ### * Click on the "Create Distribution" button and wait for approximately 5-10 minutes for CloudFront to complete the creation process.
@@ -48,6 +47,7 @@ While S3 provides reliable storage, we enhance the performance and global reach 
 
 ### * **Save the CloudFront distribution domain name** (e.g., d123.cloudfront.net) - you will need this URL for the next steps.
 
+![Alt text](explanation-images/CloudFront.png)
 
 ## `Step 3:` Securing Your Website with AWS Certificate Manager
 
